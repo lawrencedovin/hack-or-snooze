@@ -8,6 +8,8 @@ $(async function() {
   const $ownStories = $("#my-articles");
   const $navLogin = $("#nav-login");
   const $navLogOut = $("#nav-logout");
+  const $navLogOutContainer = $("#nav-logout-container");
+  const $userName = $("#user-name");
 
   // global storyList variable
   let storyList = null;
@@ -188,7 +190,7 @@ $(async function() {
 
   function showNavForLoggedInUser() {
     $navLogin.hide();
-    $navLogOut.show();
+    $navLogOutContainer.show();
   }
 
   /* simple function to pull the hostname from a URL */
