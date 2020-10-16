@@ -108,8 +108,16 @@ $(async function() {
    */
 
   $(".favorite-button").on("click", function() {
-    $(this).removeClass("far");
-    $(this).addClass("fas")
+    $(this).toggleClass("far");
+    $(this).toggleClass("fas");
+
+    // if($(this).hasClass("far")) {
+    //   $(this).removeClass("far");
+    //   $(this).addClass("fas")
+    // } else {
+    //   $(this).removeClass("fas");
+    //   $(this).addClass("far")
+    // }
   });
 
 
