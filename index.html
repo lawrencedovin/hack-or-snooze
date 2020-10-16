@@ -79,11 +79,11 @@
       <h4>Login</h4>
       <div class="login-input">
         <label for="login-username">username</label>
-        <input id="login-username" type="text">
+        <input id="login-username" type="text" required>
       </div>
       <div class="login-input">
         <label for="login-password">password</label>
-        <input id="login-password" type="password">
+        <input id="login-password" type="password" required>
       </div>
       <button type="submit">login</button>
       <hr>
@@ -92,15 +92,15 @@
       <h4>Create Account</h4>
       <div class="login-input">
         <label for="create-account-name">name</label>
-        <input id="create-account-name" type="text">
+        <input id="create-account-name" type="text" required>
       </div>
       <div class="login-input">
         <label for="create-account-username">username</label>
-        <input id="create-account-username" type="text">
+        <input id="create-account-username" type="text" required>
       </div>
       <div class="login-input">
         <label for="create-account-password">password</label>
-        <input id="create-account-password" type="password">
+        <input id="create-account-password" type="password" required>
       </div>
       <button type="submit">create account</button>
     </form>
@@ -113,17 +113,21 @@
       <div id="profile-account-date">Account Created:</div>
     </section>
   </section>
-  <section class="container">
-    <form id="submit-form" class="account-form" method="post">
-      <div class="login-input">
-        <label for="login-username">username</label>
-        <input id="login-username" type="text">
+  <section class="submit-form-container container">
+    <form id="submit-form" class="submit-form" method="post">
+      <div class="submit-input">
+        <label for="submit-author">author</label>
+        <input id="submit-author" type="text" required placeholder="author name">
       </div>
-      <div class="login-input">
-        <label for="login-password">password</label>
-        <input id="login-password" type="password">
+      <div class="submit-input">
+        <label for="submit-title">title</label>
+        <input id="submit-title" type="text" required placeholder="story title">
       </div>
-      <button type="submit">login</button>
+      <div class="submit-input">
+        <label for="submit-url">url</label>
+        <input id="submit-url" type="text" required placeholder="story url">
+      </div>
+      <button type="submit">submit</button>
     </form>
   </section>
   

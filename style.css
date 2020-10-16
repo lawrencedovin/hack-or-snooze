@@ -106,7 +106,6 @@ form input {
 
 form input:focus {
   outline: none;
-  /* box-shadow: 0 0 4px 1px darkgray; */
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px #fff;
 }
 
@@ -132,11 +131,11 @@ form > hr {
   border: 0.5px solid lightgray;
 }
 
-.login-input label {
+.login-input label, .submit-input label {
   width: 70px;
 }
 
-.account-form button {
+.account-form button, .submit-form button {
   width: 4rem;
   margin-left: 80px;
 }
@@ -206,7 +205,7 @@ form > hr {
   padding-left: 20px;
 }
 
-.account-forms-container {
+.account-forms-container, .submit-form-container {
   padding-left: 20px;
 }
 
