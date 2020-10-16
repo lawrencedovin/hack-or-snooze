@@ -74,8 +74,6 @@ $(async function() {
     const story = await storyList.addStory(currentUser,  {"author": $author, "title": $title, "url": $url});
     // Adds the new story to top of story list in the view
     $allStoriesList.prepend(generateStoryHTML(story));
-    // My stories
-    
   });
 
 
@@ -188,6 +186,7 @@ $(async function() {
     // render story markup
     const storyMarkup = $(`
       <li id="${story.storyId}">
+      <i class="far fa-star"></i>
         <a class="article-link" href="${story.url}" target="a_blank">
           <strong>${story.title}</strong>
         </a>

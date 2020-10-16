@@ -58,6 +58,8 @@ class StoryList {
 
     newStory = new Story(response.data.story);
 
+
+    // Adds to beginning of stories and ownStories array
     this.stories.unshift(newStory);
     user.ownStories.unshift(newStory);
     
