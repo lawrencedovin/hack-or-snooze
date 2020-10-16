@@ -105,7 +105,7 @@
       <button type="submit">create account</button>
     </form>
   </section>
-  <section id="user-profile" class="container hidden">
+  <section id="user-profile" class="hidden">
     <h4>User Profile Info</h4>
     <section>
       <div id="profile-name">Name:</div>
@@ -113,6 +113,20 @@
       <div id="profile-account-date">Account Created:</div>
     </section>
   </section>
+  <section class="container">
+    <form id="submit-form" class="account-form" method="post">
+      <div class="login-input">
+        <label for="login-username">username</label>
+        <input id="login-username" type="text">
+      </div>
+      <div class="login-input">
+        <label for="login-password">password</label>
+        <input id="login-password" type="password">
+      </div>
+      <button type="submit">login</button>
+    </form>
+  </section>
+  
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
