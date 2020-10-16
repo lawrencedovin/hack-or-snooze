@@ -103,6 +103,15 @@ $(async function() {
     $submitForm.slideToggle();
   });
 
+  /**
+   * Favorite Button Functionality
+   */
+
+  $(".favorite-button").on("click", function() {
+    $(this).removeClass("far");
+    $(this).addClass("fas")
+  });
+
 
 
   /**
@@ -135,6 +144,7 @@ $(async function() {
       showNavForLoggedInUser();
     }
   }
+  
 
   /**
    * A rendering function to run to reset the forms and hide the login info
@@ -186,7 +196,7 @@ $(async function() {
     // render story markup
     const storyMarkup = $(`
       <li id="${story.storyId}">
-      <i class="far fa-star"></i>
+      <i class="far fa-star favorite-button"></i>
         <a class="article-link" href="${story.url}" target="a_blank">
           <strong>${story.title}</strong>
         </a>
