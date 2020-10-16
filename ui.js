@@ -63,6 +63,22 @@ $(async function() {
     loginAndSubmitForm();
   });
 
+  $submitForm.on("submit", async function(evt) {
+    evt.preventDefault(); // no page refresh
+
+    // grab all the info from the form
+    const $title = $("#title").val();
+    const $url = $("#url").val();
+    const $author = $("#author").val();
+    $submitForm.trigger("reset");
+    const story = await storyList.addStory(currentUser,  {"author": $author, "title": $title, "url": $url});
+    // Adds the new story to top of story list in the view
+    $allStoriesList.prepend(generateStoryHTML(story));
+    // My stories
+    
+  });
+
+
   /**
    * Log Out Functionality
    */
