@@ -64,7 +64,7 @@ nav {
     position: relative;
 }
 
-span {
+.nav-welcome-logout-container {
   position: absolute;
   right: 0px;
 }
