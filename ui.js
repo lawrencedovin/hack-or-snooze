@@ -8,9 +8,8 @@ $(async function() {
   const $ownStories = $("#my-articles");
   const $navLogin = $("#nav-login");
   const $navLogOut = $("#nav-logout");
-  const $navLogOutContainer = $("#nav-logout-container");
   const $navWelcome = $("#nav-welcome");
-  const $userName = $("#user-name");
+  const $navUserProfile = $("#nav-user-profile");
 
   // global storyList variable
   let storyList = null;
@@ -192,6 +191,8 @@ $(async function() {
   function showNavForLoggedInUser() {
     $navLogin.hide();
     $navWelcome.show();
+    // Changes user profile text to the logged in user in the welcome screen
+    setTimeout(($($navUserProfile).text(localStorage.getItem("username"))), 10);
   }
 
   /* simple function to pull the hostname from a URL */
