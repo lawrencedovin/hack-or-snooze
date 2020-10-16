@@ -11,6 +11,7 @@ $(async function() {
 
   const $navLogin = $("#nav-login");
   const $navLogOut = $("#nav-logout");
+  const $navSubmit = $("#nav-submit");
   const $navWelcome = $("#nav-welcome");
   const $navUserProfile = $("#nav-user-profile");
 
@@ -83,6 +84,12 @@ $(async function() {
     $createAccountForm.slideToggle();
     $allStoriesList.toggle();
   });
+
+  $navSubmit.on("click", function() {
+    $submitForm.slideToggle();
+  });
+
+
 
   /**
    * Event handler for Navigation to Homepage

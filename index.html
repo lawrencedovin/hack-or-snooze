@@ -17,7 +17,7 @@
     <a class="nav-link nav-right" href="#" id="nav-login">login/create user</a>
     <div class="hidden" id="nav-welcome">
       <div class="main-nav-links">
-        | <a class="nav-link" href="#">submit</a>
+        | <a class="nav-link" id="nav-submit" href="#">submit</a>
         | <a class="nav-link" href="#">favorites</a>
         | <a class="nav-link" href="#">my stories</a>  
       <span class="nav-welcome-logout-container">
@@ -30,16 +30,16 @@
   </div>
   </nav>
   <section class="articles-container container">
-    <form action="" class="hidden" id="submit-form">
-      <div>
+    <form action="" class="hidden" id="submit-form" class="submit-form">
+      <div class="submit-input">
         <label for="author">author</label>
         <input id="author" required type="text" placeholder="author name">
       </div>
-      <div>
+      <div class="submit-input">
         <label for="title">title</label>
         <input id="title" required type="text" placeholder="article title">
       </div>
-      <div>
+      <div class="submit-input">
         <label for="url">url</label>
         <input id="url" required type="url" placeholder="article url">
       </div>
@@ -112,23 +112,6 @@
       <div id="profile-username">Username:</div>
       <div id="profile-account-date">Account Created:</div>
     </section>
-  </section>
-  <section class="submit-form-container container">
-    <form id="submit-form" class="submit-form" method="post">
-      <div class="submit-input">
-        <label for="submit-author">author</label>
-        <input id="submit-author" type="text" required placeholder="author name">
-      </div>
-      <div class="submit-input">
-        <label for="submit-title">title</label>
-        <input id="submit-title" type="text" required placeholder="story title">
-      </div>
-      <div class="submit-input">
-        <label for="submit-url">url</label>
-        <input id="submit-url" type="text" required placeholder="story url">
-      </div>
-      <button type="submit">submit</button>
-    </form>
   </section>
   
 </body>
