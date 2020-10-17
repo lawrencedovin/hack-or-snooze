@@ -154,11 +154,10 @@ form > hr {
   font-size: 0.8rem;
   margin: 10px 0;
   cursor: pointer;
-  list-style-type: none;
 }
 
 .articles-list > li > i {
-  padding-right: .5rem;
+  padding: 0 .5rem;
 }
 
 .star,
@@ -200,7 +199,7 @@ form > hr {
 .article-username {
   display: block;
   margin-top: 5px;
-  margin-left: 25px;
+  margin-left: 2.1rem;
 }
 
 #favorited-articles,
