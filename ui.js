@@ -107,48 +107,63 @@ $(async function() {
    * Favorite Button Functionality
    */
 
+  // $(".favorite-button").on("click", async function() {
+  //   $(this).toggleClass("far");
+  //   $(this).toggleClass("fas");
+  //   const storyId = $(this).parent().attr('id');
+  //   // gets Story id 
+  //   console.log(storyId);
+  //   // await 
+
+  //   // TODO: Save star class when favorited if favorited star class == filed
+
+  //   // Gets story that matches id clicked
+  //   const storyList = await StoryList.getStories();
+  //   for(let story of storyList.stories){
+  //     if(storyId === story.storyId && $(this).hasClass("far")){
+  //       // currently has star outline class which then clicks to filled
+  //       // Unfavorites on click
+        
+  //       // currentUser.favorites.splice(story, 1);
+  //       currentUser.removeFavoriteStory(storyId);
+  //       console.log(`${JSON.stringify(currentUser.favorites)}`);
+  //       console.log(currentUser);
+  //     } else if (storyId === story.storyId && $(this).hasClass("fas")) {
+  //       // currently has star outline class which then clicks to filled
+  //       // Favorites on click
+
+  //       // await storyList.addFavoriteStory(currentUser, story);
+  //       // currentUser.favorites.unshift(story); 
+
+  //      currentUser.addFavoriteStory(storyId);
+  //       console.log(`${JSON.stringify(currentUser.favorites)}`);
+  //       console.log(currentUser);
+  
+  //     }
+  //   }
+  // });
+
   $(".favorite-button").on("click", async function() {
     $(this).toggleClass("far");
     $(this).toggleClass("fas");
     const storyId = $(this).parent().attr('id');
-    // gets Story id 
-    console.log(storyId);
-    // await 
 
     // TODO: Save star class when favorited if favorited star class == filed
 
     // Gets story that matches id clicked
     const storyList = await StoryList.getStories();
     for(let story of storyList.stories){
-      if(storyId === story.storyId && $(this).hasClass("far")){
-        // currently has star outline class which then clicks to filled
-        // Unfavorites on click
-        currentUser.favorites.splice(story, 1);
-        console.log(`${story} i have fas`);
-        console.log(`${JSON.stringify(currentUser.favorites)}`);
-        console.log(currentUser);
-      } else if (storyId === story.storyId && $(this).hasClass("fas")) {
-        // currently has star outline class which then clicks to filled
-        // Favorites on click
-        currentUser.favorites.unshift(story); 
-        console.log(`${story} i have far`);
-        console.log(`${JSON.stringify(currentUser.favorites)}`);
-        console.log(currentUser);
+      if(storyId === story.storyId ) {
+        if($(this).hasClass("far")){
+          await currentUser.removeFavoriteStory(storyId);
+          console.log(currentUser.favorites);
+        } else if ($(this).hasClass("fas")) {
+          await currentUser.addFavoriteStory(storyId);
+          console.log(currentUser.favorites);
+        }
       }
     }
-
-
-    // console.log(currentUser);
-
-    // if($(this).hasClass("far")) {
-    //   $(this).removeClass("far");
-    //   $(this).addClass("fas")
-    // } else {
-    //   $(this).removeClass("fas");
-    //   $(this).addClass("far")
-    // }
   });
-
 
 
   /**
@@ -266,6 +281,10 @@ $(async function() {
     // Changes user profile text to the logged in user in the welcome screen
     setTimeout(($($navUserProfile).text(localStorage.getItem("username"))), 10);
   }
+
+  // function checkFavoriteStories(story) {
+
+  // }
 
   /* simple function to pull the hostname from a URL */
 

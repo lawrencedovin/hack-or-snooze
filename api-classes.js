@@ -53,16 +53,14 @@ class StoryList {
     const response = await axios.post(`${BASE_URL}/stories`, {
       token: user.loginToken,
       story: newStory,
-    }
-    );
+    });
 
     newStory = new Story(response.data.story);
-
 
     // Adds to beginning of stories and ownStories array
     this.stories.unshift(newStory);
     user.ownStories.unshift(newStory);
-    
+
     return newStory;
   }
 }
@@ -176,6 +174,132 @@ class User {
     );
     return existingUser;
   }
+
+  // async updateUser() {
+  //   const res = await axios.get(`${BASE_URL}/users/${this.username}`, {
+  //     params: {
+  //       token: this.loginToken,
+  //     },
+  //   });
+  //   //Empty favorites and ownStories
+  //   while (this.favorites.length) {
+  //     this.favorites.pop();
+  //   }
+  //   while (this.ownStories.length) {
+  //     this.ownStories.pop();
+  //   }
+  //   this.favorites = res.data.user.favorites.map((s) => new Story(s));
+  //   this.ownStories = res.data.user.stories.map((s) => new Story(s));
+
+  //   //Update below for good measure
+  //   this.username = res.data.user.username;
+  //   this.name = res.data.user.name;
+  //   this.updatedAt = res.data.user.updatedAt;
+  //   this.createdAt = res.data.user.createdAt;
+  // }
+
+  // async addFavoriteStory(storyId) {
+  //   await axios.post(
+  //     `${BASE_URL}/users/${this.username}/favorites/${storyId}`,
+  //     {
+  //       params: {
+  //         token: this.loginToken,
+  //       },
+  //     }
+  //   );
+  //   await this.updateUser();
+  // }
+
+  // async removeFavoriteStory(storyId) {
+  //   await axios.delete(
+  //     `${BASE_URL}/users/${this.username}/favorites/${storyId}`,
+  //     {
+  //       params: {
+  //         token: this.loginToken,
+  //       },
+  //     }
+  //   );
+  //   await this.updateUser();
+  // }
+
+  async retrieveDetails() {
+    const response = await axios.get(`${BASE_URL}/users/${this.username}`, {
+      params: {
+        token: this.loginToken,
+      },
+    });
+
+    // update all of the user's properties from the API response
+    this.name = response.data.user.name;
+    this.createdAt = response.data.user.createdAt;
+    this.updatedAt = response.data.user.updatedAt;
+
+    // remember to convert the user's favorites and ownStories into instances of Story
+    this.favorites = response.data.user.favorites.map((s) => new Story(s));
+    this.ownStories = response.data.user.stories.map((s) => new Story(s));
+
+    return this;
+  }
+
+  /**
+   * Add a story to the list of user favorites and update the API
+   * - storyId: an ID of a story to add to favorites
+   */
+
+  // addFavorite(storyId) {
+  //   return this._toggleFavorite(storyId, "POST");
+  // }
+
+  // /**
+  //  * Remove a story to the list of user favorites and update the API
+  //  * - storyId: an ID of a story to remove from favorites
+  //  */
+
+  // removeFavorite(storyId) {
+  //   return this._toggleFavorite(storyId, "DELETE");
+  // }
+
+  /**
+   * A helper method to either POST or DELETE to the API
+   * - storyId: an ID of a story to remove from favorites
+   * - httpVerb: POST or DELETE based on adding or removing
+   */
+  // async _toggleFavorite(storyId, httpVerb) {
+  //   await axios({
+  //     url: `${BASE_URL}/users/${this.username}/favorites/${storyId}`,
+  //     method: httpVerb,
+  //     data: {
+  //       token: this.loginToken,
+  //     },
+  //   });
+
+  //   await this.retrieveDetails();
+  //   return this;
+  // }
+
+ 
+  async addFavoriteStory(storyId) {
+    await axios.post(`${BASE_URL}/users/${this.username}/favorites/${storyId}`, {
+			token: this.loginToken
+		});
+      await this.retrieveDetails();
+  }
+
+  // async removeFavoriteStory(storyId) {
+  //   await axios.delete(`${BASE_URL}/users/${this.username}/favorites/${storyId}`, {
+	// 		token: this.loginToken
+	// 	});
+  //   await this.retrieveDetails();
+  // }
+
+  async removeFavoriteStory(storyId) {
+		await axios.delete(`${BASE_URL}/users/${this.username}/favorites/${storyId}`, {
+			params: {
+				token: this.loginToken
+			}
+		});
+		await this.retrieveDetails();
+	}
 }
 
 /**
