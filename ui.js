@@ -110,6 +110,8 @@ $(async function() {
   $(".favorite-button").on("click", function() {
     $(this).toggleClass("far");
     $(this).toggleClass("fas");
+    console.log($(this).parent().attr('id'));
+    // console.log(currentUser);
 
     // if($(this).hasClass("far")) {
     //   $(this).removeClass("far");
