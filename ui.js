@@ -244,11 +244,14 @@ $(async function() {
 
   function generateStoryHTML(story) {
     let hostName = getHostName(story.url);
+    // currentUser.checkFavorite(story);
+    // console.log(story.storyId);
+    // console.log(currentUser.checkFavorite(story.storyId));
 
     // render story markup
     const storyMarkup = $(`
       <li id="${story.storyId}">
-      <i class="far fa-star favorite-button"></i>
+      <i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>
         <a class="article-link" href="${story.url}" target="a_blank">
           <strong>${story.title}</strong>
         </a>

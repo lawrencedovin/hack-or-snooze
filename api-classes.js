@@ -111,7 +111,6 @@ class User {
   }
 
   /* Login in user and return user instance.
-
    * - username: an existing user's username
    * - password: an existing user's password
    */
@@ -241,42 +240,6 @@ class User {
     return this;
   }
 
-  /**
-   * Add a story to the list of user favorites and update the API
-   * - storyId: an ID of a story to add to favorites
-   */
-
-  // addFavorite(storyId) {
-  //   return this._toggleFavorite(storyId, "POST");
-  // }
-
-  // /**
-  //  * Remove a story to the list of user favorites and update the API
-  //  * - storyId: an ID of a story to remove from favorites
-  //  */
-
-  // removeFavorite(storyId) {
-  //   return this._toggleFavorite(storyId, "DELETE");
-  // }
-
-  /**
-   * A helper method to either POST or DELETE to the API
-   * - storyId: an ID of a story to remove from favorites
-   * - httpVerb: POST or DELETE based on adding or removing
-   */
-  // async _toggleFavorite(storyId, httpVerb) {
-  //   await axios({
-  //     url: `${BASE_URL}/users/${this.username}/favorites/${storyId}`,
-  //     method: httpVerb,
-  //     data: {
-  //       token: this.loginToken,
-  //     },
-  //   });
-
-  //   await this.retrieveDetails();
-  //   return this;
-  // }
-
  
   async addFavoriteStory(storyId) {
     await axios.post(`${BASE_URL}/users/${this.username}/favorites/${storyId}`, {
@@ -285,13 +248,6 @@ class User {
       await this.retrieveDetails();
   }
 
-  // async removeFavoriteStory(storyId) {
-  //   await axios.delete(`${BASE_URL}/users/${this.username}/favorites/${storyId}`, {
-	// 		token: this.loginToken
-	// 	});
-  //   await this.retrieveDetails();
-  // }
-
   async removeFavoriteStory(storyId) {
 		await axios.delete(`${BASE_URL}/users/${this.username}/favorites/${storyId}`, {
 			params: {
@@ -299,7 +255,17 @@ class User {
 			}
 		});
 		await this.retrieveDetails();
-	}
+  }
+  
+  checkFavorite(storyId) {
+    // Loops to check if storyId matches any of the favorite IDs in the favorites list
+    // If found while looping then return the filled class
+    // Otherwise if not found after looping return the unfilled class
+    for(let fav of this.favorites) {
+      if(storyId === fav.storyId) return "fas";
+    }
+    return "far";
+  }
 }
 
 /**
