@@ -1,6 +1,7 @@
 $(async function() {
   // cache some selectors we'll be using quite a bit
   const $allStoriesList = $("#all-articles-list");
+  const $favoritedArticles = $("#favorited-articles");
   const $filteredArticles = $("#filtered-articles");
   
   const $submitForm = $("#submit-form");
@@ -14,6 +15,8 @@ $(async function() {
   const $navSubmit = $("#nav-submit");
   const $navWelcome = $("#nav-welcome");
   const $navUserProfile = $("#nav-user-profile");
+  const $navFavorites = $("#nav-favorites");
+  const $navMyStories = $("#nav-my-stories");
 
   // global storyList variable
   let storyList = null;
@@ -107,48 +110,10 @@ $(async function() {
    * Favorite Button Functionality
    */
 
-  // $(".favorite-button").on("click", async function() {
-  //   $(this).toggleClass("far");
-  //   $(this).toggleClass("fas");
-  //   const storyId = $(this).parent().attr('id');
-  //   // gets Story id 
-  //   console.log(storyId);
-  //   // await 
-
-  //   // TODO: Save star class when favorited if favorited star class == filed
-
-  //   // Gets story that matches id clicked
-  //   const storyList = await StoryList.getStories();
-  //   for(let story of storyList.stories){
-  //     if(storyId === story.storyId && $(this).hasClass("far")){
-  //       // currently has star outline class which then clicks to filled
-  //       // Unfavorites on click
-        
-  //       // currentUser.favorites.splice(story, 1);
-  //       currentUser.removeFavoriteStory(storyId);
-  //       console.log(`${JSON.stringify(currentUser.favorites)}`);
-  //       console.log(currentUser);
-  //     } else if (storyId === story.storyId && $(this).hasClass("fas")) {
-  //       // currently has star outline class which then clicks to filled
-  //       // Favorites on click
-
-  //       // await storyList.addFavoriteStory(currentUser, story);
-  //       // currentUser.favorites.unshift(story); 
-
-  //      currentUser.addFavoriteStory(storyId);
-  //       console.log(`${JSON.stringify(currentUser.favorites)}`);
-  //       console.log(currentUser);
-  
-  //     }
-  //   }
-  // });
-
   $(".favorite-button").on("click", async function() {
     $(this).toggleClass("far");
     $(this).toggleClass("fas");
     const storyId = $(this).parent().attr('id');
-
-    // TODO: Save star class when favorited if favorited star class == filed
 
     // Gets story that matches id clicked
     const storyList = await StoryList.getStories();
@@ -165,6 +130,14 @@ $(async function() {
     }
   });
 
+  /**
+   * Event handler for Navigation to Favorite Stories
+   */
+
+  $navFavorites.on("click", async function() {
+    alert('HELLOOOO WORLDDDD');
+  });
+ 
 
   /**
    * Event handler for Navigation to Homepage
@@ -244,7 +217,7 @@ $(async function() {
 
   function generateStoryHTML(story) {
     let hostName = getHostName(story.url);
-    
+
     // render story markup
     const storyMarkup = $(`
       <li id="${story.storyId}">
@@ -281,10 +254,6 @@ $(async function() {
     // Changes user profile text to the logged in user in the welcome screen
     setTimeout(($($navUserProfile).text(localStorage.getItem("username"))), 10);
   }
-
-  // function checkFavoriteStories(story) {
-
-  // }
 
   /* simple function to pull the hostname from a URL */
 

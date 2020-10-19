@@ -120,12 +120,8 @@ class User {
     const existingUser = new User(response.data.user);
 
     // instantiate Story instances for the user's favorites and ownStories
-    existingUser.favorites = response.data.user.favorites.map(
-      (s) => new Story(s)
-    );
-    existingUser.ownStories = response.data.user.stories.map(
-      (s) => new Story(s)
-    );
+    existingUser.favorites = response.data.user.favorites.map((s) => new Story(s));
+    existingUser.ownStories = response.data.user.stories.map((s) => new Story(s));
 
     // attach the token to the newUser instance for convenience
     existingUser.loginToken = response.data.token;
@@ -158,75 +154,23 @@ class User {
     existingUser.loginToken = token;
 
     // instantiate Story instances for the user's favorites and ownStories
-    existingUser.favorites = response.data.user.favorites.map(
-      (s) => new Story(s)
-    );
-    existingUser.ownStories = response.data.user.stories.map(
-      (s) => new Story(s)
-    );
+    existingUser.favorites = response.data.user.favorites.map((s) => new Story(s));
+    existingUser.ownStories = response.data.user.stories.map((s) => new Story(s));
     return existingUser;
   }
 
-  // async updateUser() {
-  //   const res = await axios.get(`${BASE_URL}/users/${this.username}`, {
-  //     params: {
-  //       token: this.loginToken,
-  //     },
-  //   });
-  //   //Empty favorites and ownStories
-  //   while (this.favorites.length) {
-  //     this.favorites.pop();
-  //   }
-  //   while (this.ownStories.length) {
-  //     this.ownStories.pop();
-  //   }
-  //   this.favorites = res.data.user.favorites.map((s) => new Story(s));
-  //   this.ownStories = res.data.user.stories.map((s) => new Story(s));
-
-  //   //Update below for good measure
-  //   this.username = res.data.user.username;
-  //   this.name = res.data.user.name;
-  //   this.updatedAt = res.data.user.updatedAt;
-  //   this.createdAt = res.data.user.createdAt;
-  // }
-
-  // async addFavoriteStory(storyId) {
-  //   await axios.post(
-  //     `${BASE_URL}/users/${this.username}/favorites/${storyId}`,
-  //     {
-  //       params: {
-  //         token: this.loginToken,
-  //       },
-  //     }
-  //   );
-  //   await this.updateUser();
-  // }
-
-  // async removeFavoriteStory(storyId) {
-  //   await axios.delete(
-  //     `${BASE_URL}/users/${this.username}/favorites/${storyId}`,
-  //     {
-  //       params: {
-  //         token: this.loginToken,
-  //       },
-  //     }
-  //   );
-  //   await this.updateUser();
-  // }
-
-  async retrieveDetails() {
+  async updateUser() {
     const response = await axios.get(`${BASE_URL}/users/${this.username}`, {
       params: {
         token: this.loginToken,
       },
     });
 
-    // update all of the user's properties from the API response
     this.name = response.data.user.name;
     this.createdAt = response.data.user.createdAt;
     this.updatedAt = response.data.user.updatedAt;
 
-    // remember to convert the user's favorites and ownStories into instances of Story
+    // The user's favorites and ownStories are turned into an instances of Story
     this.favorites = response.data.user.favorites.map((s) => new Story(s));
     this.ownStories = response.data.user.stories.map((s) => new Story(s));
 
