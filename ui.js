@@ -19,6 +19,9 @@ $(async function() {
   const $navFavorites = $("#nav-favorites");
   const $navMyStories = $("#nav-my-stories");
 
+  // global favoriteList variable
+  let favoriteList = null;
+
   // global storyList variable
   let storyList = null;
 
@@ -140,14 +143,19 @@ $(async function() {
         }
       }
     }
+    console.log('hello');
   });
 
   /**
    * Event handler for Navigation to Favorite Stories
    */
 
-  $navFavorites.on("click", async function() {
-    alert('HELLOOOO WORLDDDD');
+   // WHEN REFRESHED CLICK EVENTS WORK IF NOT REFRESHED DOESN'T WORK SWITCHING BETWEEN HOME AND FAVORITES
+  $navFavorites.on("click", function() {
+    hideElements();
+    $favoritedArticles.empty();
+    generateFavoriteStories();
+    $favoritedArticles.show();
   });
 
   /**
@@ -213,6 +221,14 @@ $(async function() {
     }
   }
 
+
+  function generateFavoriteStories() {
+    for (let story of currentUser.favorites) {
+      const storyHTML = generateStoryHTML(story);
+      $favoritedArticles.append(storyHTML);
+    }
+  }
+
   /**
    * A function to render HTML for an individual Story instance
    */
@@ -221,7 +237,7 @@ $(async function() {
     let hostName = getHostName(story.url);
     let favoritesVisible;
     if(currentUser) favoritesVisible = `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`;
-    else favoritesVisible = `<i></i>`;
+    else favoritesVisible = `<i class="favorite-button"></i>`;
     // render story markup
     const storyMarkup = $(`
       <li id="${story.storyId}">
@@ -244,6 +260,7 @@ $(async function() {
     const elementsArr = [
       $submitForm,
       $allStoriesList,
+      $favoritedArticles,
       $filteredArticles,
       $ownStories,
       $loginForm,
