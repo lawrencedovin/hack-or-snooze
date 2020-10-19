@@ -1,11 +1,4 @@
 const BASE_URL = "https://hack-or-snooze-v3.herokuapp.com";
-const username = "lawrence123";
-const password = "foo";
-// https://hack-or-snooze-v3.herokuapp.com/login?username=lawrence123&password=foo
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imxhd3JlbmNlMTIzIiwiaWF0IjoxNjAyNjk5Mjc0fQ.Ad-vTzC1AttlTxOWCpUnIQ8m4DR9uNQKAd66ZYNEK9E";
-const test =
-  "https://hack-or-snooze-v3.herokuapp.com/users/lawrence123?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imxhd3JlbmNlMTIzIiwiaWF0IjoxNjAyNjk5Mjc0fQ.Ad-vTzC1AttlTxOWCpUnIQ8m4DR9uNQKAd66ZYNEK9E";
 /**
  * This class maintains the list of individual Story instances
  *  It also has some methods for fetching, adding, and removing stories

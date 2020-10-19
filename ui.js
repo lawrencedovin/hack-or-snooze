@@ -244,10 +244,7 @@ $(async function() {
 
   function generateStoryHTML(story) {
     let hostName = getHostName(story.url);
-    // currentUser.checkFavorite(story);
-    // console.log(story.storyId);
-    // console.log(currentUser.checkFavorite(story.storyId));
-
+    
     // render story markup
     const storyMarkup = $(`
       <li id="${story.storyId}">
