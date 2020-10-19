@@ -236,7 +236,7 @@ $(async function() {
     let hostName = getHostName(story.url);
     let favoritesVisible;
     if(currentUser) favoritesVisible = `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`;
-    else favoritesVisible = `<i class="favorite-button"></i>`;
+    else favoritesVisible = `<i></i>`;
     // render story markup
     const storyMarkup = $(`
       <li id="${story.storyId}">
