@@ -93,6 +93,26 @@ $(async function() {
     hideElements();
     await generateStories();
     $allStoriesList.show();
+
+    $(".favorite-button").on("click", async function() {
+      $(this).toggleClass("far");
+      $(this).toggleClass("fas");
+      const storyId = $(this).parent().attr('id');
+  
+      // Gets story that matches id clicked
+      const storyList = await StoryList.getStories();
+      for(let story of storyList.stories){
+        if(storyId === story.storyId ) {
+          if($(this).hasClass("far")){
+            await currentUser.removeFavoriteStory(storyId);
+            console.log(currentUser.favorites);
+          } else if ($(this).hasClass("fas")) {
+            await currentUser.addFavoriteStory(storyId);
+            console.log(currentUser.favorites);
+          }
+        }
+      }
+    });
   });
 
   /**
@@ -155,6 +175,26 @@ $(async function() {
     $favoritedArticles.empty();
     generateFavoriteStories();
     $favoritedArticles.show();
+
+    $(".favorite-button").on("click", async function() {
+      $(this).toggleClass("far");
+      $(this).toggleClass("fas");
+      const storyId = $(this).parent().attr('id');
+  
+      // Gets story that matches id clicked
+      const storyList = await StoryList.getStories();
+      for(let story of storyList.stories){
+        if(storyId === story.storyId ) {
+          if($(this).hasClass("far")){
+            await currentUser.removeFavoriteStory(storyId);
+            console.log(currentUser.favorites);
+          } else if ($(this).hasClass("fas")) {
+            await currentUser.addFavoriteStory(storyId);
+            console.log(currentUser.favorites);
+          }
+        }
+      }
+    });
   });
 
   /**
