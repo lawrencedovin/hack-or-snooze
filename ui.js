@@ -89,30 +89,10 @@ $(async function() {
    * Event handler for Navigation to Homepage
    */
 
-  $navAll.on("click", async function() {
+  $("body").on("click", "#nav-all", async function() {
     hideElements();
     await generateStories();
     $allStoriesList.show();
-
-    $(".favorite-button").on("click", async function() {
-      $(this).toggleClass("far");
-      $(this).toggleClass("fas");
-      const storyId = $(this).parent().attr('id');
-  
-      // Gets story that matches id clicked
-      const storyList = await StoryList.getStories();
-      for(let story of storyList.stories){
-        if(storyId === story.storyId ) {
-          if($(this).hasClass("far")){
-            await currentUser.removeFavoriteStory(storyId);
-            console.log(currentUser.favorites);
-          } else if ($(this).hasClass("fas")) {
-            await currentUser.addFavoriteStory(storyId);
-            console.log(currentUser.favorites);
-          }
-        }
-      }
-    });
   });
 
   /**
@@ -145,7 +125,7 @@ $(async function() {
    * Favorite Button Functionality
    */
 
-  $(".favorite-button").on("click", async function() {
+  $("body").on("click", ".favorite-button", async function() {
     $(this).toggleClass("far");
     $(this).toggleClass("fas");
     const storyId = $(this).parent().attr('id');
@@ -168,33 +148,12 @@ $(async function() {
   /**
    * Event handler for Navigation to Favorite Stories
    */
-
-   // WHEN REFRESHED CLICK EVENTS WORK IF NOT REFRESHED DOESN'T WORK SWITCHING BETWEEN HOME AND FAVORITES
+  
   $navFavorites.on("click", function() {
     hideElements();
     $favoritedArticles.empty();
     generateFavoriteStories();
     $favoritedArticles.show();
-
-    $(".favorite-button").on("click", async function() {
-      $(this).toggleClass("far");
-      $(this).toggleClass("fas");
-      const storyId = $(this).parent().attr('id');
-  
-      // Gets story that matches id clicked
-      const storyList = await StoryList.getStories();
-      for(let story of storyList.stories){
-        if(storyId === story.storyId ) {
-          if($(this).hasClass("far")){
-            await currentUser.removeFavoriteStory(storyId);
-            console.log(currentUser.favorites);
-          } else if ($(this).hasClass("fas")) {
-            await currentUser.addFavoriteStory(storyId);
-            console.log(currentUser.favorites);
-          }
-        }
-      }
-    });
   });
 
   /**
