@@ -10,6 +10,7 @@ $(async function() {
 
   const $ownStories = $("#my-articles");
 
+  const $navAll = $("#nav-all");
   const $navLogin = $("#nav-login");
   const $navLogOut = $("#nav-logout");
   const $navSubmit = $("#nav-submit");
@@ -79,6 +80,17 @@ $(async function() {
     $allStoriesList.prepend(generateStoryHTML(story));
   });
 
+  
+
+  /**
+   * Event handler for Navigation to Homepage
+   */
+
+  $navAll.on("click", async function() {
+    hideElements();
+    await generateStories();
+    $allStoriesList.show();
+  });
 
   /**
    * Log Out Functionality
@@ -137,17 +149,6 @@ $(async function() {
   $navFavorites.on("click", async function() {
     alert('HELLOOOO WORLDDDD');
   });
- 
-
-  /**
-   * Event handler for Navigation to Homepage
-   */
-
-  $("body").on("click", "#nav-all", async function() {
-    hideElements();
-    await generateStories();
-    $allStoriesList.show();
-  });
 
   /**
    * On page load, checks local storage to see if the user is already logged in.
@@ -175,7 +176,7 @@ $(async function() {
    * A rendering function to run to reset the forms and hide the login info
    */
 
-  function loginAndSubmitForm() {
+  async function loginAndSubmitForm() {
     // hide the forms for logging in and signing up
     $loginForm.hide();
     $createAccountForm.hide();
@@ -189,6 +190,7 @@ $(async function() {
 
     // update the navigation bar
     showNavForLoggedInUser();
+    location.reload();
   }
 
   /**
@@ -217,11 +219,13 @@ $(async function() {
 
   function generateStoryHTML(story) {
     let hostName = getHostName(story.url);
-
+    let favoritesVisible;
+    if(currentUser) favoritesVisible = `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`;
+    else favoritesVisible = `<i></i>`;
     // render story markup
     const storyMarkup = $(`
       <li id="${story.storyId}">
-      <i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>
+      ${favoritesVisible}
         <a class="article-link" href="${story.url}" target="a_blank">
           <strong>${story.title}</strong>
         </a>

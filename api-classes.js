@@ -182,7 +182,7 @@ class User {
     await axios.post(`${BASE_URL}/users/${this.username}/favorites/${storyId}`, {
 			token: this.loginToken
 		});
-      await this.retrieveDetails();
+      await this.updateUser();
   }
 
   async removeFavoriteStory(storyId) {
@@ -191,7 +191,7 @@ class User {
 				token: this.loginToken
 			}
 		});
-		await this.retrieveDetails();
+		await this.updateUser();
   }
   
   checkFavorite(storyId) {
