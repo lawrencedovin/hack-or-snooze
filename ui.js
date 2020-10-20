@@ -170,9 +170,10 @@ $(async function () {
 
   $navUserProfile.on("click", function() {
     hideElements();
-    
+    $("#profile-name").text(`Name: ${currentUser.name}`);
+    $("#profile-username").text(`Username: ${currentUser.username}`);
+    $("#profile-account-date").text(`Account Created: ${currentUser.createdAt}`);
     $userProfile.show();
-
   });
 
   /**
