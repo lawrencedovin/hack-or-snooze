@@ -246,13 +246,18 @@ $(async function() {
 
   function generateStoryHTML(story) {
     let hostName = getHostName(story.url);
-    let favoritesVisible;
-    if(currentUser) favoritesVisible = `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`;
-    else favoritesVisible = `<i></i>`;
+    let iconsVisible;
+    let showFavoritesIcon = `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`;
+    let showRemoveIcon = `<i class="fa fa-trash favorite-button"></i>`;
+    
+    if(currentUser && $myArticles.has("li").length === 0) iconsVisible = showFavoritesIcon;
+    else if($myArticles.has("li").length >= 1) iconsVisible = showRemoveIcon+showFavoritesIcon;
+    else iconsVisible = `<i></i>`;
+    
     // render story markup
     const storyMarkup = $(`
       <li id="${story.storyId}">
-      ${favoritesVisible}
+      ${iconsVisible}
         <a class="article-link" href="${story.url}" target="a_blank">
           <strong>${story.title}</strong>
         </a>
@@ -268,16 +273,26 @@ $(async function() {
   /* hide all elements in elementsArr */
 
   function hideElements() {
-    const elementsArr = [
+    const hideElementsArr = [
       $submitForm,
       $allStoriesList,
       $favoritedArticles,
+      $myArticles,
       $filteredArticles,
       $ownStories,
       $loginForm,
       $createAccountForm
     ];
-    elementsArr.forEach($elem => $elem.hide());
+
+    const emptyElementsArr = [
+      $allStoriesList,
+      $favoritedArticles,
+      $myArticles,
+      $filteredArticles,
+      $ownStories
+    ];
+    hideElementsArr.forEach($elem => $elem.hide());
+    emptyElementsArr.forEach($elem => $elem.empty());
   }
 
   function showNavForLoggedInUser() {
