@@ -80,19 +80,7 @@ $(async function() {
     // Adds the new story to top of story list in the view
     $allStoriesList.prepend(generateStoryHTML(story));
   });
-
   
-
-  /**
-   * Event handler for Navigation to Homepage
-   */
-
-  $("body").on("click", "#nav-all", async function() {
-    hideElements();
-    await generateStories();
-    $allStoriesList.show();
-  });
-
   /**
    * Log Out Functionality
    */
@@ -144,24 +132,39 @@ $(async function() {
   });
 
   /**
+   * Event handler for Navigation Views
+   */
+
+  function navShowStories(htmlSection, generateStoriesFunc){
+    hideElements();
+    htmlSection.empty();
+    generateStoriesFunc();
+    htmlSection.show();
+  }
+   
+  /**
+   * Event handler for Navigation to Homepage
+   */
+
+  $navAll.on("click", function() {
+    navShowStories($allStoriesList, generateStories);
+  });
+
+  /**
    * Event handler for Navigation to Favorite Stories
    */
 
   $navFavorites.on("click", function() {
-    hideElements();
-    $favoritedArticles.empty();
-    generateFavoriteStories();
-    $favoritedArticles.show();
+    navShowStories($favoritedArticles, generateFavoriteStories);
   });
+
+  /**
+   * Event handler for Navigation to My Stories
+   */
 
   $navMyStories.on("click", function() {
-    hideElements();
-    $myArticles.empty();
-    generateOwnStories();
-    $myArticles.show();
+    navShowStories($myArticles, generateOwnStories);
   });
-
-  generateOwnStories()
 
   /**
    * On page load, checks local storage to see if the user is already logged in.
@@ -184,7 +187,6 @@ $(async function() {
     }
   }
   
-
   /**
    * A rendering function to run to reset the forms and hide the login info
    */
