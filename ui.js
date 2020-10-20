@@ -140,23 +140,10 @@ $(async function () {
    */
 
   $("body").on("click", ".remove-button", async function () {
-    const storyId = $(this).parent().attr("id");
-    console.log(storyId);
-
-    await currentUser.removeOwnStory(storyId);
-    // // Gets story that matches id clicked
-    // const storyList = await StoryList.getStories();
-    // for (let story of storyList.stories) {
-    //   if (storyId === story.storyId) {
-    //     if ($(this).hasClass("far")) {
-    //       await currentUser.removeFavoriteStory(storyId);
-    //       console.log(currentUser.favorites);
-    //     } else if ($(this).hasClass("fas")) {
-    //       await currentUser.addFavoriteStory(storyId);
-    //       console.log(currentUser.favorites);
-    //     }
-    //   }
-    // }
+    const $storyContainer = $(this).parent();
+    const $storyId = $storyContainer.attr("id");
+    await currentUser.removeOwnStory($storyId);
+    $storyContainer.remove();
   });
 
   /**
