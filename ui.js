@@ -154,6 +154,15 @@ $(async function() {
     $favoritedArticles.show();
   });
 
+  $navMyStories.on("click", function() {
+    hideElements();
+    $myArticles.empty();
+    generateOwnStories();
+    $myArticles.show();
+  });
+
+  generateOwnStories()
+
   /**
    * On page load, checks local storage to see if the user is already logged in.
    * Renders page information accordingly.
