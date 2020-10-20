@@ -2,6 +2,7 @@ $(async function() {
   // cache some selectors we'll be using quite a bit
   const $allStoriesList = $("#all-articles-list");
   const $favoritedArticles = $("#favorited-articles");
+  const $myArticles = $("#my-articles");
   const $filteredArticles = $("#filtered-articles");
   
   const $submitForm = $("#submit-form");
@@ -18,9 +19,6 @@ $(async function() {
   const $navUserProfile = $("#nav-user-profile");
   const $navFavorites = $("#nav-favorites");
   const $navMyStories = $("#nav-my-stories");
-
-  // global favoriteList variable
-  let favoriteList = null;
 
   // global storyList variable
   let storyList = null;
@@ -148,7 +146,7 @@ $(async function() {
   /**
    * Event handler for Navigation to Favorite Stories
    */
-  
+
   $navFavorites.on("click", function() {
     hideElements();
     $favoritedArticles.empty();
@@ -200,6 +198,18 @@ $(async function() {
   }
 
   /**
+   * Function for looping through stories depending on type of story and
+   *  story HTML Section
+   */
+
+  function loopStories(storyArray, htmlSection) {
+    for (let story of storyArray) {
+      const result = generateStoryHTML(story);
+      htmlSection.append(result);
+    }
+  }
+
+  /**
    * A rendering function to call the StoryList.getStories static method,
    *  which will generate a storyListInstance. Then render it.
    */
@@ -213,19 +223,19 @@ $(async function() {
     $allStoriesList.empty();
 
     // loop through all of our stories and generate HTML for them
-    for (let story of storyList.stories) {
-      const result = generateStoryHTML(story);
-      $allStoriesList.append(result);
-    }
+    loopStories(storyList.stories, $allStoriesList);
   }
 
 
   function generateFavoriteStories() {
-    for (let story of currentUser.favorites) {
-      const storyHTML = generateStoryHTML(story);
-      $favoritedArticles.append(storyHTML);
-    }
+    loopStories(currentUser.favorites, $favoritedArticles);
   }
+
+  // function generateOwnStories() {
+  //   for(let story of currentUser.ownStories) {
+
+  //   }
+  // }
 
   /**
    * A function to render HTML for an individual Story instance
