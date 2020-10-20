@@ -248,11 +248,14 @@ $(async function () {
   }
 
   function generateFavoriteStories() {
-    loopStories(currentUser.favorites, $favoritedArticles);
+    if(currentUser.favorites.length > 0) loopStories(currentUser.favorites, $favoritedArticles);
+    else $favoritedArticles.text("No favorites added!");
+
   }
 
   function generateOwnStories() {
-    loopStories(currentUser.ownStories, $myArticles);
+    if(currentUser.ownStories.length > 0) loopStories(currentUser.ownStories, $myArticles);
+    else $myArticles.text("No stories added by user yet!");
   }
 
   /**
