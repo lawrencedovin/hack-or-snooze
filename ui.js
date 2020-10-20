@@ -258,9 +258,7 @@ $(async function () {
     let showRemoveIcon = `<i class="fa fa-trash remove-button"></i>`;
 
     if (currentUser) {
-      $myArticles.has("li").length >= 1
-        ? (iconsVisible = showRemoveIcon + showFavoritesIcon)
-        : (iconsVisible = showFavoritesIcon);
+      $myArticles.has("li").length >= 1 ? (iconsVisible = showRemoveIcon + showFavoritesIcon) : (iconsVisible = showFavoritesIcon);
     } else `<i></i>`;
 
     // render story markup
