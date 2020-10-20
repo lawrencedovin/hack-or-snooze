@@ -231,11 +231,9 @@ $(async function() {
     loopStories(currentUser.favorites, $favoritedArticles);
   }
 
-  // function generateOwnStories() {
-  //   for(let story of currentUser.ownStories) {
-
-  //   }
-  // }
+  function generateOwnStories() {
+    loopStories(currentUser.ownStories, $myArticles);
+  }
 
   /**
    * A function to render HTML for an individual Story instance
