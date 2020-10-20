@@ -249,10 +249,12 @@ $(async function() {
     let iconsVisible;
     let showFavoritesIcon = `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`;
     let showRemoveIcon = `<i class="fa fa-trash favorite-button"></i>`;
-    
-    if(currentUser && $myArticles.has("li").length === 0) iconsVisible = showFavoritesIcon;
-    else if($myArticles.has("li").length >= 1) iconsVisible = showRemoveIcon+showFavoritesIcon;
-    else iconsVisible = `<i></i>`;
+
+    if(currentUser) {
+      $myArticles.has("li").length >= 1 ? iconsVisible = showRemoveIcon + showFavoritesIcon : iconsVisible = showFavoritesIcon;
+    }
+    else `<i></i>`;
+
     
     // render story markup
     const storyMarkup = $(`
