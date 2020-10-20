@@ -145,26 +145,20 @@ $(async function() {
   /**
    * Event handler for Navigation to Homepage
    */
-
-  $navAll.on("click", function() {
-    navShowStories($allStoriesList, generateStories);
-  });
+  
+  $navAll.on("click", function() { navShowStories($allStoriesList, generateStories) });
 
   /**
    * Event handler for Navigation to Favorite Stories
    */
 
-  $navFavorites.on("click", function() {
-    navShowStories($favoritedArticles, generateFavoriteStories);
-  });
+  $navFavorites.on("click", function() { navShowStories($favoritedArticles, generateFavoriteStories) });
 
   /**
    * Event handler for Navigation to My Stories
    */
 
-  $navMyStories.on("click", function() {
-    navShowStories($myArticles, generateOwnStories);
-  });
+  $navMyStories.on("click", function() { navShowStories($myArticles, generateOwnStories)});
 
   /**
    * On page load, checks local storage to see if the user is already logged in.
