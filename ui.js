@@ -253,18 +253,20 @@ $(async function () {
 
   function generateStoryHTML(story) {
     let hostName = getHostName(story.url);
-    let iconsVisible;
-    let showFavoritesIcon = `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`;
-    let showRemoveIcon = `<i class="fa fa-trash remove-button"></i>`;
-
-    if (currentUser) {
-      $myArticles.has("li").length >= 1 ? (iconsVisible = showRemoveIcon + showFavoritesIcon) : (iconsVisible = showFavoritesIcon);
-    } else `<i></i>`;
-
+    let showTrashIcon = `<i class="fa fa-trash remove-button"></i>`
+    let showIcons;
+    
+    if(currentUser) {
+      $myArticles.has("li").length === 0
+      ? showIcons = `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`
+      : showIcons = showTrashIcon + `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`;
+    }
+    else showIcons = `<i></i>`;
+    
     // render story markup
     const storyMarkup = $(`
       <li id="${story.storyId}">
-      ${iconsVisible}
+      ${showIcons}
         <a class="article-link" href="${story.url}" target="a_blank">
           <strong>${story.title}</strong>
         </a>
@@ -276,6 +278,7 @@ $(async function () {
 
     return storyMarkup;
   }
+
 
   /* hide all elements in elementsArr */
 
