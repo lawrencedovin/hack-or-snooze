@@ -202,15 +202,25 @@ class User {
 		});
     await this.updateUser();
   }
-  
+
   checkFavorite(storyId) {
     // Loops to check if storyId matches any of the favorite IDs in the favorites list
     // If found while looping then return the filled class
     // Otherwise if not found after looping return the unfilled class
-    for(let fav of this.favorites) {
-      if(storyId === fav.storyId) return "fas";
+    for(let favorite of this.favorites) {
+      if(storyId === favorite.storyId) return "fas";
     }
     return "far";
+  }
+
+  checkOwnStory(storyId) {
+    // Loops to check if storyId matches any of the own stories IDs in the own stories list
+    // If found true append trash icon with favorite icon
+    // Otherwise append just the favorite icon
+    for(let ownStory of this.ownStories) {
+      if(storyId === ownStory.storyId) return true;
+    }
+    return false;
   }
 }
 

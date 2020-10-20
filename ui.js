@@ -268,9 +268,9 @@ $(async function () {
     let showIcons;
     
     if(currentUser) {
-      $myArticles.has("li").length === 0
-      ? showIcons = `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`
-      : showIcons = showTrashIcon + `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`;
+      currentUser.checkOwnStory(story.storyId) 
+      ? showIcons = showTrashIcon + `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`
+      : showIcons = `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`;
     }
     else showIcons = `<i></i>`;
     
@@ -295,23 +295,16 @@ $(async function () {
 
   function hideElements() {
     const elementsArr = [
-      [
-        $submitForm,
-        $loginForm,
-        $createAccountForm,
-        $userProfile,
-      ],
-      [
-        $allStoriesList,
-        $favoritedArticles,
-        $myArticles,
-        $filteredArticles,
-      ],
+      $submitForm,
+      $loginForm,
+      $createAccountForm,
+      $userProfile,
+      $allStoriesList,
+      $favoritedArticles,
+      $myArticles,
+      $filteredArticles,
     ];
-
-    [forms, views] = [elementsArr[0], elementsArr[1]];
-    forms.concat(views).forEach(($elem) => $elem.hide());
-    views.forEach(($elem) => $elem.empty());
+    elementsArr.forEach(($elem) => $elem.hide());
   }
 
   function showNavForLoggedInUser() {
