@@ -147,6 +147,16 @@ form > hr {
   width: 8rem;
 }
 
+.fa-star.fas,
+.fa-star.far:hover{
+  color: #f1c40f;
+}
+
+.fa-trash:hover {
+  color: #e74c3c;
+}
+
+
 .articles-list {
   margin: 20px 5px;
 }
