@@ -5,11 +5,11 @@ $(async function () {
   const $myArticles = $("#my-articles");
   const $filteredArticles = $("#filtered-articles");
 
+  const $userProfile = $("#user-profile");
+
   const $submitForm = $("#submit-form");
   const $loginForm = $("#login-form");
   const $createAccountForm = $("#create-account-form");
-
-  const $ownStories = $("#my-articles");
 
   const $navAll = $("#nav-all");
   const $navLogin = $("#nav-login");
@@ -168,6 +168,13 @@ $(async function () {
     navShowStories($myArticles, generateOwnStories);
   });
 
+  $navUserProfile.on("click", function() {
+    hideElements();
+    
+    $userProfile.show();
+
+  });
+
   /**
    * On page load, checks local storage to see if the user is already logged in.
    * Renders page information accordingly.
@@ -288,13 +295,13 @@ $(async function () {
         $submitForm,
         $loginForm,
         $createAccountForm,
+        $userProfile,
       ],
       [
         $allStoriesList,
         $favoritedArticles,
         $myArticles,
         $filteredArticles,
-        $ownStories,
       ],
     ];
 

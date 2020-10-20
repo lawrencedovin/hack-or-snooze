@@ -36,7 +36,6 @@ a:hover {
 }
 
 
-
 nav {
   display: flex;
   background-color: #ff6600;
@@ -69,11 +68,15 @@ nav {
   right: 0px;
 }
 
+.container, 
+#user-profile  {
+  background-color: #f6f6ef;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   align-self: center;
-  background-color: #f6f6ef;
 }
 
 form {
