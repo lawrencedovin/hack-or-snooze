@@ -136,6 +136,30 @@ $(async function () {
   });
 
   /**
+   * Remove Own Story Button Functionality
+   */
+
+  $("body").on("click", ".remove-button", async function () {
+    const storyId = $(this).parent().attr("id");
+    console.log(storyId);
+
+    await currentUser.removeOwnStory(storyId);
+    // // Gets story that matches id clicked
+    // const storyList = await StoryList.getStories();
+    // for (let story of storyList.stories) {
+    //   if (storyId === story.storyId) {
+    //     if ($(this).hasClass("far")) {
+    //       await currentUser.removeFavoriteStory(storyId);
+    //       console.log(currentUser.favorites);
+    //     } else if ($(this).hasClass("fas")) {
+    //       await currentUser.addFavoriteStory(storyId);
+    //       console.log(currentUser.favorites);
+    //     }
+    //   }
+    // }
+  });
+
+  /**
    * Event handler for Navigation Views
    */
 
@@ -256,10 +280,8 @@ $(async function () {
   function generateStoryHTML(story) {
     let hostName = getHostName(story.url);
     let iconsVisible;
-    let showFavoritesIcon = `<i class="${currentUser.checkFavorite(
-      story.storyId
-    )} fa-star favorite-button"></i>`;
-    let showRemoveIcon = `<i class="fa fa-trash favorite-button"></i>`;
+    let showFavoritesIcon = `<i class="${currentUser.checkFavorite(story.storyId)} fa-star favorite-button"></i>`;
+    let showRemoveIcon = `<i class="fa fa-trash remove-button"></i>`;
 
     if (currentUser) {
       $myArticles.has("li").length >= 1

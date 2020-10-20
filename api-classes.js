@@ -193,6 +193,15 @@ class User {
 		});
 		await this.updateUser();
   }
+
+  async removeOwnStory(storyId) {
+    await axios.delete(`${BASE_URL}/stories/${storyId}`, {
+			params: {
+				token: this.loginToken
+			}
+		});
+    await this.updateUser();
+  }
   
   checkFavorite(storyId) {
     // Loops to check if storyId matches any of the favorite IDs in the favorites list
